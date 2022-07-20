@@ -7,7 +7,7 @@ import { Store } from "../../context/store";
 import data from "../../utils/data";
 
 const ProductDetail = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { slug } = query;
 
   const { state, dispatch } = useContext(Store);
@@ -25,7 +25,8 @@ const ProductDetail = () => {
       alert("Sorry, Product is out of stock!");
       return;
     }
-    dispatch({ type: "CARD_ADD_ITEM", payload: { ...product, quantity } });
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    push("/cart");
   };
 
   return (
